@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
+var messageRoutes = require('./routes/messages');
 var appRoutes = require('./routes/app');
 
 var app = express();
@@ -29,6 +30,7 @@ app.use(function(req, res, next) {
     next();
 });
 
+app.use('/message', messageRoutes);
 app.use('/', appRoutes);
 
 // catch 404 and forward to error handler

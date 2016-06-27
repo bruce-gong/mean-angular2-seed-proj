@@ -1,19 +1,22 @@
 import {Component} from 'angular2/core';
-import {MessageComponent} from './messages/message.component';
-import {Message} from './messages/message';
+import {RouteConfig, ROUTER_DIRECTIVES} from "angular2/router";
+import {MessagesComponent} from "./messages/messages.component";
+import {AuthenticationComponent} from "./auth/authentication.component";
+import {HeaderComponent} from "./header.component";
 @Component({
     selector: 'my-app',
     template: `
-    <div class="row">
-    </div>
-        <div class="row">
-            <section class="col-md-8 col-md-offset-2">
-                <my-message [message]='message' (editClicked)="message.content=$event"></my-message>
-            </section>
+        <div class="container">
+            <my-header></my-header>
+            <router-outlet></router-outlet>
         </div>
     `,
-    directives: [MessageComponent]
+    directives: [ROUTER_DIRECTIVES, HeaderComponent]
+
 })
+@RouteConfig([
+    {path: '/', name: 'Messages', component: MessagesComponent, useAsDefault: true},
+    {path: '/auth/...', name: 'Auth', component: AuthenticationComponent}
+])
 export class AppComponent {
-    message: Message = new Message('A new message', null, 'Bruce');
 }
