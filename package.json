@@ -16,6 +16,7 @@
     "hbs": "~3.1.0",
     "jsonwebtoken": "^7.0.1",
     "mongoose": "^4.4.12",
+    "mongoose-unique-validator": "^1.0.2",
     "morgan": "~1.6.1",
     "password-hash": "^1.2.2",
     "reflect-metadata": "0.1.2",
