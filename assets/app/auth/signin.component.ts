@@ -1,5 +1,6 @@
 import {Component, OnInit} from "angular2/core";
 import {FormBuilder, ControlGroup, Validators, Control} from "angular2/common";
+import {User} from './user'
 @Component ({
     selector: 'my-signin',
     template:  `
@@ -22,10 +23,18 @@ import {FormBuilder, ControlGroup, Validators, Control} from "angular2/common";
 export class SigninComponent implements OnInit {
     myForm: ControlGroup;
 
-    constructor(private _fb:FormBuilder) {}
+    constructor(private _fb:FormBuilder, private _authService: AuthService) {}
 
     onSubmit() {
-        console.log(this.myForm.value);
+        const user = new User(this.myForm.value.email, this.myForm.value, password);
+        this._authService.signin(user)
+            .subscribe(
+                data => {
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('user', data.userId);
+                },
+                error => console.error(err)
+            );
     }
 
     ngOnInit() {
