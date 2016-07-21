@@ -1,29 +1,31 @@
-import {Component, OnInit} from 'angular2/core';
-import {Error} from './error';
-import {ErrorService} from "./error.service";
+import { Component, OnInit } from "@angular/core";
+
+import { Error } from "./error";
+import { ErrorService } from "./error.service";
 @Component({
     selector: 'my-error',
     template: `
         <div class="backdrop" [ngStyle]="{'display': errorDisplay}"></div>
         <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display': errorDisplay}">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onErrorHandled()">
-                        <span aria-hidden="true">&times;</span></button>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" aria-label="Close" (click)="onErrorHandled()"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title">{{errorData?.title}}</h4>
-                </div>
-                <div class="modal-body">
-                    <p>{{errorData?.message}}</p>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-default" (click)="onErrorHandled()">Close</button>
-                </div>
-            </div>
-        </div>
+                    </div>
+                    <div class="modal-body">
+                     <p>{{errorData?.message}}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" (click)="onErrorHandled()">Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->  
     `,
     styles: [`
         .backdrop {
-            background-color: rgba(0, 0, 0, 0.6);
+            background-color: rgba(0,0,0,0.6);
             position: fixed;
             top: 0;
             left: 0;
@@ -44,10 +46,10 @@ export class ErrorComponent implements OnInit {
 
     ngOnInit() {
         this._errorService.errorOccurred.subscribe(
-            errorData => {
-                this.errorData = errorData;
-                this.errorDisplay = 'block';
-            }
-        )
+          errorData => {
+              this.errorData = errorData;
+              this.errorDisplay = 'block';
+          }
+        );
     }
 }

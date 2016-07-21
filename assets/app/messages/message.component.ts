@@ -1,17 +1,18 @@
-import {Component, Input, Output, EventEmitter} from "angular2/core";
-import {Message} from "./message";
-import {MessageService} from "./message.service";
-import {ErrorService} from "../errors/error.service";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { Message } from "./message";
+
+import { MessageService } from "./message.service";
+import { ErrorService } from "../errors/error.service";
 @Component({
     selector: 'my-message',
     template: `
         <article class="panel panel-default">
             <div class="panel-body">
-                {{message.content}}
+                {{ message.content }}
             </div>
             <footer class="panel-footer">
                 <div class="author">
-                    {{message.username}}
+                    {{ message.username }}
                 </div>
                 <div class="config" *ngIf="belongsToUser()">
                     <a (click)="onEdit()">Edit</a>
@@ -30,17 +31,16 @@ import {ErrorService} from "../errors/error.service";
         .config {
             display: inline-block;
             text-align: right;
-            font-size:12px;
+            font-size: 12px;
             width: 19%;
         }
     `]
 })
-
 export class MessageComponent {
-    @Input() message: Message;
+    @Input() message:Message;
     @Output() editClicked = new EventEmitter<string>();
 
-    constructor(private _messageService: MessageService, private _errorService: ErrorService){};
+    constructor (private _messageService: MessageService, private _errorService: ErrorService) {}
 
     onEdit() {
         this._messageService.editMessage(this.message);

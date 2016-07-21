@@ -1,12 +1,13 @@
-import {Component, OnInit} from "angular2/core";
-import {FormBuilder, ControlGroup, Validators, Control} from "angular2/common";
-import {User} from './user';
-import {AuthService} from './auth.service';
-import {Router} from "angular2/router";
-import {ErrorService} from "../errors/error.service";
-@Component ({
+import { Component, OnInit } from "@angular/core";
+import { ControlGroup, FormBuilder, Validators, Control } from "@angular/common";
+import { Router } from "@angular/router";
+
+import { User } from "./user";
+import { AuthService } from "./auth.service";
+import { ErrorService } from "../errors/error.service";
+@Component({
     selector: 'my-signin',
-    template:  `
+    template: `
         <section class="col-md-8 col-md-offset-2">
             <form [ngFormModel]="myForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
@@ -22,7 +23,6 @@ import {ErrorService} from "../errors/error.service";
         </section>
     `
 })
-
 export class SigninComponent implements OnInit {
     myForm: ControlGroup;
 
@@ -47,8 +47,7 @@ export class SigninComponent implements OnInit {
                 Validators.required,
                 this.isEmail
             ])],
-            password: ['', Validators.required],
-
+            password: ['', Validators.required]
         });
     }
 

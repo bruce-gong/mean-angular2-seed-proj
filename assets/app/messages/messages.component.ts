@@ -1,6 +1,7 @@
-import {Component} from "angular2/core";
-import {MessageListComponent} from './message-list.component';
-import {MessageInputComponent} from './message-input.component';
+import { Component } from "@angular/core";
+
+import { MessageInputComponent } from "./message-input.component";
+import { MessageListComponent } from "./message-list.component";
 @Component({
     selector: 'my-messages',
     template: `
@@ -9,8 +10,10 @@ import {MessageInputComponent} from './message-input.component';
         </div>
         <div class="row spacing">
             <my-message-list></my-message-list>
-        </div>
+        </div> 
     `,
     directives: [MessageListComponent, MessageInputComponent]
 })
-export class MessagesComponent {}
+export class MessagesComponent {
+    
+}

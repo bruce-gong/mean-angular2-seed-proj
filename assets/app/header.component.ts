@@ -1,13 +1,14 @@
-import {Component} from "angular2/core";
-import {ROUTER_DIRECTIVES} from "angular2/router";
+import { Component } from "@angular/core";
+import { ROUTER_DIRECTIVES } from "@angular/router";
 @Component({
     selector: 'my-header',
     template: `
         <header class="row">
-            <nav class="col-md-offset-2">
+            <nav class="col-md-8 col-md-offset-2">
                 <ul class="nav nav-pills">
-                    <li><a [routerLink]="['Messages']">Messengers</a></li>
-                    <li><a [routerLink]="['Auth']">Authentication</a></li>
+                    <li><a [routerLink]="['/message']">Messages</a></li>
+                    <li><a [routerLink]="['/auth']">Authentication</a></li>
+                    <li><a [routerLink]="['/post']">Posts</a></li>
                 </ul>
             </nav>
         </header>
@@ -19,7 +20,7 @@ import {ROUTER_DIRECTIVES} from "angular2/router";
         }
 
         ul {
-            text-align: center;
+          text-align: center;
         }
 
         li {
@@ -33,4 +34,6 @@ import {ROUTER_DIRECTIVES} from "angular2/router";
         }
     `]
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+
+}

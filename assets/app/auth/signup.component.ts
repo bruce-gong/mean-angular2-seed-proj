@@ -1,11 +1,12 @@
-import {Component, OnInit} from "angular2/core";
-import {FormBuilder, ControlGroup, Validators, Control} from "angular2/common";
-import {User} from "./user";
-import {AuthService} from "./auth.service";
-import {ErrorService} from "../errors/error.service";
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, ControlGroup, Validators, Control } from "@angular/common";
+
+import { User } from "./user";
+import { AuthService } from "./auth.service";
+import { ErrorService } from "../errors/error.service";
 @Component({
     selector: 'my-signup',
-    template:  `
+    template: `
         <section class="col-md-8 col-md-offset-2">
             <form [ngFormModel]="myForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
@@ -36,6 +37,7 @@ export class SignupComponent implements OnInit {
 
     onSubmit() {
         const user = new User(this.myForm.value.email, this.myForm.value.password, this.myForm.value.firstName, this.myForm.value.lastName);
+        console.log(user);
         this._authService.signup(user)
             .subscribe(
                 data => console.log(data),
@@ -51,8 +53,7 @@ export class SignupComponent implements OnInit {
                 Validators.required,
                 this.isEmail
             ])],
-            password: ['', Validators.required],
-
+            password: ['', Validators.required]
         });
     }
 
