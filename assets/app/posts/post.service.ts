@@ -30,12 +30,21 @@ export class PostService {
                 const data = response.json().obj;
                 let objs: any[] = [];
                 for (let i = 0; i < data.length; i++) {
-                    let post = new Post(data[i].title, data[i].content, data[i].user.firstName, data[i]._id, data[i].user._id, data[i].upvotes, data[i].downvotes);
+                    let post = new Post(data[i].title, data[i].content, data[i].user.firstName, data[i]._id, data[i].user._id, data[i].upvotes, data[i].downvotes, data[i].comments);
                     objs.push(post);
                 };
                 return objs;
             })
             .catch(error => Observable.throw(error.json()));
+    }
+
+    getPost(postId) {
+        for (let i = 0; i < this.posts.length; i++) {
+            if (postId === this.posts[i].postId) {
+                return this.posts[i];
+            }
+        }
+        return null;
     }
 
     upvotePost(post: Post) {

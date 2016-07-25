@@ -2,6 +2,9 @@ import { Component, OnInit } from "@angular/core";
 
 import { Post } from "./post";
 
+import { CommentComponent } from "./comments/comment.component";
+import { CommentInputComponent } from "./comments/comment-input.component";
+
 import { PostService } from "./post.service";
 import { ErrorService } from "../errors/error.service";
 @Component({
@@ -11,15 +14,19 @@ import { ErrorService } from "../errors/error.service";
             <div *ngFor="let post of posts">
                 <article class="panel panel-default">
                     <div class="panel-body">
-                        <a (click)="toggleFlag(post.title)">
+                        <a (click)="toggleFlag(post.postId)">
                         {{ post.title }}</a>
                         <span class="glyphicon glyphicon-thumbs-up"
                         (click)="upvotePost(post)"></span>
-                        {{post.upvotes}}
+                        {{ post.upvotes }}
                         <span class="glyphicon glyphicon-thumbs-down"
                         (click)="downvotePost(post)"></span>
-                        {{post.downvotes}}
-                        <article [hidden]="showContent || post.title !== clickedTitle">{{post.content}}</article>
+                        {{ post.downvotes }}
+                        <span [hidden]="hideContent || post.postId !== clickedPostId">
+                            <article>{{ post.content }}</article>
+                            <comment-input [postId]="post.postId"></comment-input>
+                            <comment *ngFor="let comment of post.comments" [comment]="comment" [postId]="post.postId"></comment>
+                        </span>
                     </div>
                     <footer class="panel-footer">
                         <div class="author">
@@ -29,19 +36,24 @@ import { ErrorService } from "../errors/error.service";
                 </article>
             </div>
         </section>
-    `
+    `,
+    directives: [CommentInputComponent, CommentComponent]
 })
 export class PostListComponent implements OnInit {
 
     constructor(private _postService: PostService, private _errorService: ErrorService) {}
 
     posts: Post[];
-    showContent = true;
-    clickedTitle = '';
+    hideContent = true;
+    clickedPostId = '';
 
-    toggleFlag(title) {
-        this.clickedTitle = title;
-        this.showContent = !this.showContent;
+    toggleFlag(postId) {
+        if (this.clickedPostId === postId) {
+            this.hideContent = !this.hideContent;
+        } else {
+            this.clickedPostId = postId;
+            this.hideContent = false;
+        }
     }
 
     upvotePost(post) {

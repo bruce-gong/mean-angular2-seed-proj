@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var User = require('../models/user.model');
+var Comment = require('../models/comment.model');
 
 var PostSchema = new Schema({
     title: {type: String, required: true},
@@ -8,6 +9,7 @@ var PostSchema = new Schema({
     user: {type: Schema.Types.ObjectId, ref: 'User'},
     upvotes: {type: Number, default: 0},
     downvotes: {type: Number, default: 0},
+    comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}]
 });
 
 PostSchema.methods.upvote = function(cb) {
