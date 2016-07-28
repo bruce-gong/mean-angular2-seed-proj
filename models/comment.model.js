@@ -4,6 +4,7 @@ var Post = require('../models/post.model');
 
 var CommentSchema = new Schema({
   body: String,
+  author: String,
   post: { type: Schema.Types.ObjectId, ref: 'Post' },
   upvotes: {type: Number, default: 0},
   downvotes: {type: Number, default: 0}

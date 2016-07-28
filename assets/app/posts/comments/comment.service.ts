@@ -17,7 +17,7 @@ export class CommentService {
         return this._http.post('http://localhost:3000/post/' + postId + '/comment' + token, body, {headers: headers})
             .map(response => {
                 const data = response.json().obj;
-                let comment = new Comment(data.body, data._id, data.post._id, 0, 0);
+                let comment = new Comment(data.body, data.author, data._id, data.post._id, 0, 0);
                 return comment;
             })
             .catch(error => Observable.throw(error.json()));

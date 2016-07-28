@@ -10,12 +10,12 @@ import { ErrorService } from "../../errors/error.service";
         <article class="panel panel-default">
             <div class="panel-body">
                 <span>{{ comment.body }}</span>
-                <span class="glyphicon glyphicon-thumbs-up"
-                        (click)="upvoteComment(postId, comment)"></span>
-                        {{ comment.upvotes }}
-                        <span class="glyphicon glyphicon-thumbs-down"
-                        (click)="downvoteComment(postId, comment)"></span>
-                        {{ comment.downvotes }}
+                <span class="glyphicon glyphicon-thumbs-up" (click)="upvoteComment(postId, comment)"></span>
+                    {{ comment.upvotes }}
+                <span class="glyphicon glyphicon-thumbs-down" (click)="downvoteComment(postId, comment)"></span>
+                    {{ comment.downvotes }}
+                <br>
+                <span>By {{ comment.author }}</span>
             </div>
         </article>
     `,

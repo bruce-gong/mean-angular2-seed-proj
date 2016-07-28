@@ -121,7 +121,7 @@ router.patch('/:id/downvote', function(req, res, next) {
 // Add a comment
 router.post('/:id/comment', function(req, res, next) {
     var decoded = jwt.decode(req.query.token);
-    User.findById(decoded.user._id, function(err, doc) {
+    User.findById(decoded.user._id, function(err, userDoc) {
         if (err) {
             return res.status(404).json({
                 title: 'An error occurred',
@@ -144,6 +144,7 @@ router.post('/:id/comment', function(req, res, next) {
 
             var comment = new Comment(req.body);
             comment.post = doc;
+            comment.author = userDoc.firstName;
             comment.save(function(err, result) {
                 if (err) {
                     return res.status(404).json({
