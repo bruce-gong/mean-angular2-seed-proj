@@ -1,19 +1,28 @@
 import { Component } from "@angular/core";
 import { ROUTER_DIRECTIVES } from "@angular/router";
+import { MaterializeDirective } from "angular2-materialize";
 @Component({
     selector: 'my-header',
     template: `
         <header class="row">
-            <nav class="col-md-8 col-md-offset-2">
-                <ul class="nav nav-pills">
-                    <li><a [routerLink]="['/message']">Messages</a></li>
-                    <li><a [routerLink]="['/auth']">Authentication</a></li>
-                    <li><a [routerLink]="['/post']">Posts</a></li>
-                </ul>
+            <ul id="dropdown-profile" class="dropdown-content">
+                <li><a [routerLink]="['/auth/signup']">Signup</a></li>
+                <li><a [routerLink]="['/auth/logout']">Logout</a></li>
+            </ul>
+
+            <nav>
+                <div class="nav-wrapper">
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li><a [routerLink]="['/message']">Messages</a></li>
+                        <li><a [routerLink]="['/auth']">Authentication</a></li>
+                        <li><a [routerLink]="['/post']">Posts</a></li>
+                        <li><a materialize="dropdown" data-activates="dropdown-profile">Profile</a></li>
+                    </ul>
+                </div>
             </nav>
-        </header>
+            </header>
     `,
-    directives: [ROUTER_DIRECTIVES],
+    directives: [ROUTER_DIRECTIVES, MaterializeDirective],
     styles: [`
         header {
             margin-bottom: 20px;
@@ -29,8 +38,7 @@ import { ROUTER_DIRECTIVES } from "@angular/router";
         }
 
         .router-link-active {
-            background-color: #337ab7;
-            color: white;
+            background-color: #ea454b;
         }
     `]
 })

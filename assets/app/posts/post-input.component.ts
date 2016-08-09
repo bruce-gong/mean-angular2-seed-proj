@@ -6,15 +6,15 @@ import { ErrorService } from "../errors/error.service";
 @Component({
     selector: 'my-post-input',
     template:`
-        <section class="col-md-8 col-md-offset-2">
+        <section class="col s12">
             <form (ngSubmit)="onSubmit(f.value)" #f="ngForm">
-                <div class="form-group">
+                <div class="input-field">
+                    <input ngControl="title" type="text" id="title" #input [ngModel]="post?.title">
                     <label for="title">Title</label>
-                    <input ngControl="title" type="text" class="form-control" id="title" #input [ngModel]="post?.title">
                 </div>
-                <div class="form-group">
+                <div class="input-field">
+                    <input ngControl="content" type="text" id="content" #input [ngModel]="post?.content">
                     <label for="content">Content</label>
-                    <input ngControl="content" type="text" class="form-control" id="content" #input [ngModel]="post?.content">
                 </div>
                 <button type="submit" class="btn btn-primary">Post</button>
             </form>

@@ -8,9 +8,9 @@ import { ErrorService } from "../errors/error.service";
     template: `
         <section class="col-md-8 col-md-offset-2">
             <form (ngSubmit)="onSubmit(f.value)" #f="ngForm">
-                <div class="form-group">
+                <div class="input-field">
+                    <input ngControl="content" type="text" id="content" #input [ngModel]="message?.content">
                     <label for="content">Content</label>
-                    <input ngControl="content" type="text" class="form-control" id="content" #input [ngModel]="message?.content">
                 </div>
                 <button type="submit" class="btn btn-primary">{{ !message ? 'Send Message' : 'Save Message' }}</button>
                 <button type="button" class="btn btn-danger" (click)="onCancel()" *ngIf="message">Cancel</button>

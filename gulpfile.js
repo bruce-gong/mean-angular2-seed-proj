@@ -55,14 +55,22 @@ gulp.task('vendor', function() {
     gulp.src('node_modules/moment/**')
         .pipe(gulp.dest(vendor + '/moment/'));
 
+    //materialize-css
+    gulp.src('node_modules/materialize-css/**')
+        .pipe(gulp.dest(vendor + '/materialize-css/'));
+
+    //angular2-materialize
+    gulp.src('node_modules/angular2-materialize/**')
+        .pipe(gulp.dest(vendor + '/angular2-materialize'));
+
     //zonejs
     return gulp.src('node_modules/zone.js/**')
         .pipe(gulp.dest(vendor + '/zone.js/'));
 });
 
 gulp.task('watch', function() {
-   gulp.watch(appDev + '**/*.ts', ['build-ts']); 
-   gulp.watch(appDev + '**/*.{html,htm,css}', ['build-copy']); 
+   gulp.watch(appDev + '**/*.ts', ['build-ts']);
+   gulp.watch(appDev + '**/*.{html,htm,css}', ['build-copy']);
 });
 
 gulp.task('default', ['watch', 'build-ts', 'build-copy', 'vendor']);

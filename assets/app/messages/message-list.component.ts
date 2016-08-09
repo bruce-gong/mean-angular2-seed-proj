@@ -7,8 +7,10 @@ import { ErrorService } from "../errors/error.service";
 @Component({
     selector: 'my-message-list',
     template: `
-        <section class="col-md-8 col-md-offset-2">
-            <my-message *ngFor="let message of messages" [message]="message" (editClicked)="message.content = $event"></my-message>     
+        <section class="col s8">
+            <ul class="collection" *ngFor="let message of messages">
+                <my-message [message]="message" (editClicked)="message.content = $event"></my-message>
+            </ul>
         </section>
     `,
     directives: [MessageComponent]

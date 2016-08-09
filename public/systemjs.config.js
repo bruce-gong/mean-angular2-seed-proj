@@ -4,13 +4,18 @@
     var map = {
         'app':                        'js/app', // 'dist',
         'rxjs':                       'js/vendor/rxjs',
-        '@angular':                   'js/vendor/@angular'
+        '@angular':                   'js/vendor/@angular',
+        'materialize-css':            'js/vendor/materialize-css',
+        'materialize':                'js/vendor/angular2-materialize',
+        'angular2-materialize':       'js/vendor/angular2-materialize'
     };
 
     // packages tells the System loader how to load when no filename and/or no extension
     var packages = {
         'app':                        { main: 'boot.js',  defaultExtension: 'js' },
         'rxjs':                       { defaultExtension: 'js' },
+        'materialize-css':            { main: 'dist/js/materialize' },
+        'materialize':                { main: 'dist/materialize-directive', defaultExtension: 'js' }
     };
 
     var packageNames = [

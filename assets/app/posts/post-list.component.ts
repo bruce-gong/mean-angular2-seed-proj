@@ -10,33 +10,42 @@ import { ErrorService } from "../errors/error.service";
 @Component({
     selector: 'my-post-list',
     template: `
-        <section class="col-md-8 col-md-offset-2">
-            <div *ngFor="let post of posts">
-                <article class="panel panel-default">
-                    <div class="panel-body">
-                        <a (click)="toggleFlag(post.postId)">
-                        {{ post.title }}</a>
-                        <span class="glyphicon glyphicon-thumbs-up"
-                        (click)="upvotePost(post)"></span>
-                        {{ post.upvotes }}
-                        <span class="glyphicon glyphicon-thumbs-down"
-                        (click)="downvotePost(post)"></span>
-                        {{ post.downvotes }}
-                        <span [hidden]="hideContent || post.postId !== clickedPostId">
-                            <article>{{ post.content }}</article>
-                            <comment-input [postId]="post.postId"></comment-input>
-                            <comment *ngFor="let comment of post.comments" [comment]="comment" [postId]="post.postId"></comment>
-                        </span>
-                    </div>
-                    <footer class="panel-footer">
+        <section class="col s8">
+            <ul class="collection" *ngFor="let post of posts">
+                <li class="collection-item">
+                    <a (click)="toggleFlag(post.postId)">
+                    {{ post.title }}</a>
+                    <i class="tiny material-icons"
+                    (click)="upvotePost(post)">thumb_up</i>
+                    {{ post.upvotes }}
+                    <i class="tiny material-icons"
+                    (click)="downvotePost(post)">thumb_down</i>
+                    {{ post.downvotes }}
+                    <span [hidden]="hideContent || post.postId !== clickedPostId">
+                        <article>{{ post.content }}</article>
+                        <comment-input [postId]="post.postId"></comment-input>
+                        <comment *ngFor="let comment of post.comments" [comment]="comment" [postId]="post.postId"></comment>
+                    </span>
+                    <footer>
                         <div class="author">
                             by {{ post.username }}
                         </div>
                     </footer>
-                </article>
-            </div>
+                </li>
+            </ul>
         </section>
     `,
+    styles: [`
+        .author {
+            display: inline-block;
+            font-style: italic;
+            font-size: 12px;
+            width: 80%;
+        }
+        .tiny.material-icons:hover {
+            cursor: pointer;
+        }
+    `],
     directives: [CommentInputComponent, CommentComponent]
 })
 export class PostListComponent implements OnInit {

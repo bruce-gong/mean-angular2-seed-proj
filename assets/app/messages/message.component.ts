@@ -6,11 +6,11 @@ import { ErrorService } from "../errors/error.service";
 @Component({
     selector: 'my-message',
     template: `
-        <article class="panel panel-default">
-            <div class="panel-body">
+        <li class="collection-item">
+            <div>
                 {{ message.content }}
             </div>
-            <footer class="panel-footer">
+            <footer>
                 <div class="author">
                     {{ message.username }}
                 </div>
@@ -19,7 +19,7 @@ import { ErrorService } from "../errors/error.service";
                     <a (click)="onDelete()">Delete</a>
                 </div>
             </footer>
-        </article>
+        </li>
     `,
     styles: [`
         .author {
